@@ -1,12 +1,10 @@
 pragma solidity ^0.6.4;
 
 contract cityPoll {
-    
     struct City {
         string cityName;
         uint256 vote;
     }
-
 
     mapping(uint256 => City) public cities; 
     mapping(address => bool) hasVoted; 
@@ -15,21 +13,18 @@ contract cityPoll {
     uint256 public cityCount = 0; // number of city added
     
     constructor() public {
-    
         //TODO set contract caller as owner
         owner = msg.sender;
     
         //TODO set some intitial cities.
         addCity("Kathmandhu");
         addCity("Pokhara");
-        
     }
  
  
     function addCity(string memory cityName) public {
       //  TODO: add city to the CityStruct
       require(msg.sender == owner,"only owner user can add cities");
-      
       
       City memory newCity = City({cityName:cityName, vote:0});
       cities[cityCount] = newCity;
@@ -54,4 +49,3 @@ contract cityPoll {
         return cities[id].vote;
     }
 }
-
